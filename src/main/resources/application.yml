@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: flowableDemo
+  datasource:
+    url: jdbc:mysql://xxx.xx.xxx.xxx:3306/flowable?useUnicode=true&characterEncoding=UTF-8&useSSL=false&nullCatalogMeansCurrent=false
+    username: xxx
+    password: xxxxx
+    driver-class-name: com.mysql.cj.jdbc.Driver
+flowable:
+  # 设置了true，确保在JDBC参数连接的数据库中，数据库表结构不存在时，会创建相应的表结构。
+  database-schema-update: false
+  async-executor-activate: false
+server:
+  port: 8081
