@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author wangkai
@@ -15,15 +16,12 @@ import java.io.Serializable;
 public class GatewayDefinitionDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "网关名称")
-    private String gatewayName;
+    @ApiModelProperty(value = "节点ID")
+    private String id;
 
-    @ApiModelProperty(value = "网关类型" ,notes="Exclusive、Parallel或Inclusive")
-    private String gatewayType;
+    @ApiModelProperty(value = "节点名称")
+    private String name;
 
-    @ApiModelProperty(value = "网关条件", notes = "这是一个基于流程变量的布尔表达式，用于决定流程的走向。")
-    private String gatewayCondition;
-
-    @ApiModelProperty(value = "目标节点")
-    private String targetNode;
+    @ApiModelProperty(value = "节点类型", notes = "ExclusiveGateway或ParallelGateway")
+    private String type;
 }

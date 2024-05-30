@@ -1,9 +1,12 @@
 package com.example.flowabledemo;
 
 import com.example.flowabledemo.service.impl.FlowableProcessBaselineServiceImpl;
+import liquibase.pro.packaged.R;
 import org.flowable.engine.RepositoryService;
+import org.flowable.engine.RuntimeService;
 import org.flowable.engine.TaskService;
 import org.flowable.engine.repository.ProcessDefinition;
+import org.flowable.engine.runtime.ProcessInstance;
 import org.flowable.task.api.Task;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,7 +29,8 @@ public class DeleteDemoTests {
     private TaskService taskService;
     @Resource
     private FlowableProcessBaselineServiceImpl flowableProcessService;
-
+    @Resource
+    private RuntimeService runtimeService;
     @Resource
     private RepositoryService repositoryService;
     @Test
@@ -40,13 +44,21 @@ public class DeleteDemoTests {
             }
         }
     }
+    @Test
+    public void deleteAllProcessInstance(){
+        //查询所有流程实例
+        List<org.flowable.engine.runtime.ProcessInstance> processInstances = runtimeService.createProcessInstanceQuery().list();
+        for (ProcessInstance processInstance : processInstances) {
+            runtimeService.deleteProcessInstance(processInstance.getId(),"deleteReason");
+        }
+    }
 
     @Test
     public void DeleteAllTask(){
         //查询所有任务
         List<Task> tasks = taskService.createTaskQuery().list();
         for (Task task : tasks) {
-            taskService.complete(task.getId());
+            taskService.deleteTask(task.getId());
         }
     }
 

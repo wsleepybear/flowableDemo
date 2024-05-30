@@ -32,7 +32,13 @@ public class StartHolidayTaskDTO {
     @ApiModelProperty(value = "请假类型，如病假、年假等")
     private String leaveType;
 
-    @ApiModelProperty(value = "审批人列表")
+    @ApiModelProperty(value = "HR审批人")
+    private List<String> HRReviews;
+
+    @ApiModelProperty(value = "部门领导审批人")
+    private List<String> ManagerReviews;
+
+    @ApiModelProperty
     private List<String> approvers;
 
     @ApiModelProperty(value = "流程id")
